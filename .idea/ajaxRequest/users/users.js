@@ -11,7 +11,7 @@ function getUsers (callback){
     const  xhr = new XMLHttpRequest();
     xhr.open('GET', 'https://jsonplaceholder.typicode.com/users');
     xhr.addEventListener('load', () =>{
-        const response = JSON.parse(xhr.responseText);
+        const responce = JSON.parse(xhr.responseText);
         callback(responce);
     })
     xhr.send();
@@ -52,7 +52,7 @@ function getUsersName(responce){
 
 }
 
-function  onGetUsetInfoCallback(user){
+function  onGetUserInfoCallback(user){
     console.log(user)
     if(!user.id){
         console.log('User is not found')
@@ -66,33 +66,7 @@ function renderUserInfo(user){
     const detail = document.createElement('p');
     detail.textContent = JSON.stringify(user)
     card.appendChild(detail);
-
-/*    const response = JSON.parse(user);
-    console.log(response);
-    user.forEach(info =>{
-        const card = document.querySelectorAll(`div[data-user-id=\'${user.id}\']`)[0];
-        const username = document.createElement('p');
-        username.textContent = info.username;
-        card.appendChild(username)
-
-    })*/
 }
-
-/*user.addEventListener('click', ()=>{console.log('verno')})*/
-/*function getInfo(userItem){
-  const  fragment = document.createDocumentFragment();
-  userItem.forEach(item => {
-      const card = document.createElement('div');
-      const cardBody = document.createElement('div');
-      const name = document.createElement('h1');
-      name.textContent = userItem.name;
-      const username = document.createElement('h1');
-      username.textContent= userItem.username;
-      const email = document.createElement('h1');
-
-  })
-
-}*/
 btn.addEventListener('click', (e) => {
     getUsers(getUsersName)
 })

@@ -92,8 +92,8 @@ function httpRequest({method, url} = {}, callback){
                 callback(`Error. status code ${xhr.status}`, xhr)
                 return
             }
-            const request = JSON.parse(xhr.responseText)// переводим из JSON в массив
-            callback(null, request)
+            const response = JSON.parse(xhr.responseText)// переводим из JSON в массив
+            callback(null, respons)
         })
         xhr.addEventListener("error", () =>{
             callback(`Error. status code ${xhr.status}`, xhr)
@@ -143,15 +143,15 @@ function httpUniversal(){
                 const xhr = new XMLHttpRequest();
                 xhr.open("POST", url);
                 xhr.addEventListener("load", () =>{
-                    if(Math.floor(xhr.status/100 !== 2)){
+                    if(Math.floor(xhr.status/100) !== 2){
                         callback(`Error. status code ${xhr.status}`, xhr)
                         return;
                     }
                     const request = JSON.parse(xhr.responseText);// получаем объект из JSONстрок
                     callback(null, request)
                 })
-                xhr.addEventListener("error", () =>{
-                    console.log('error')
+                xhr.addEventListener("error", (error) =>{
+                    console.log(error)
                    /* callback(`Error. status code ${xhr.status}`, xhr)*/
                 })
                 if(headers){
